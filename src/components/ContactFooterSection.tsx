@@ -118,14 +118,13 @@ export default function ContactFooterSection() {
               }`}
           >
             <h2 className="text-[26px] sm:text-[32px] font-medium tracking-[-0.03em] leading-[1.15] text-[#1A1A1A]">
-              Ready to scale
+              Ready to transform
               <br />
-              your brand?
+              your space?
             </h2>
 
             <p className="mt-3.5 text-[12px] sm:text-[13px] leading-[1.5] tracking-[-0.01em] text-black font-normal">
-              We don&apos;t just talk results — we create them. Join the brands
-              that already trust Kinetic to grow faster.
+              Crafting Spaces. Building Visions. From concept to completion, we deliver excellence in detail for turnkey interior fit-outs and general maintenance across the UAE.
             </p>
 
             {/* White Pill Button with Glowing Orange Orb Thumbnail on the Left */}
@@ -257,7 +256,7 @@ export default function ContactFooterSection() {
             </div>
 
             <p className="mt-14 lg:mt-20 text-[11px] font-normal tracking-[-0.01em] text-[#8E8E8B]">
-              © Kinetic Studio 2025
+              © Safvra Concepts 2025 · Crafting Spaces. Building Visions.
             </p>
           </div>
 
@@ -269,9 +268,9 @@ export default function ContactFooterSection() {
                 Location
               </h3>
               <p className="text-[12px] sm:text-[12.5px] leading-[1.55] text-[#4A4A4A] font-normal">
-                Kyiv, Ukraine —
+                Abu Dhabi, United Arab Emirates —
                 <br />
-                working worldwide
+                Interior Fit-Out &amp; General Maintenance
               </p>
             </div>
 
@@ -282,7 +281,7 @@ export default function ContactFooterSection() {
               </h3>
               <div className="grid grid-cols-2 gap-x-8 gap-y-2.5 max-w-[220px] text-[12px] sm:text-[12.5px] font-normal text-[#4A4A4A]">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/safvra_concepts/"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[#FF5526] transition-colors"
@@ -290,12 +289,20 @@ export default function ContactFooterSection() {
                   Instagram
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href="https://api.whatsapp.com/send?phone=971568025017"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[#FF5526] transition-colors"
                 >
-                  YouTube
+                  WhatsApp
+                </a>
+                <a
+                  href="https://www.facebook.com/safvraconcepts"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-[#FF5526] transition-colors"
+                >
+                  Facebook
                 </a>
                 <a
                   href="https://linkedin.com"
@@ -304,14 +311,6 @@ export default function ContactFooterSection() {
                   className="hover:text-[#FF5526] transition-colors"
                 >
                   LinkedIn
-                </a>
-                <a
-                  href="https://dribbble.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#FF5526] transition-colors"
-                >
-                  Dribbble
                 </a>
               </div>
             </div>
@@ -326,16 +325,22 @@ export default function ContactFooterSection() {
               </h3>
               <div className="flex flex-col gap-2 text-[12px] sm:text-[12.5px] font-normal text-[#4A4A4A]">
                 <a
-                  href="tel:+380670000000"
-                  className="hover:text-[#FF5526] transition-colors"
+                  href="tel:+971568025017"
+                  className="hover:text-[#FF5526] transition-colors font-medium text-[#1A1A1A]"
                 >
-                  +380 67 000 00 00
+                  +971 56 802 5017
                 </a>
                 <a
-                  href="mailto:hello@kineticstudio.com"
+                  href="tel:+971501488983"
                   className="hover:text-[#FF5526] transition-colors"
                 >
-                  hello@kineticstudio.com
+                  +971 50 148 8983
+                </a>
+                <a
+                  href="mailto:contact@safvraconcepts.com"
+                  className="hover:text-[#FF5526] transition-colors"
+                >
+                  contact@safvraconcepts.com
                 </a>
               </div>
             </div>

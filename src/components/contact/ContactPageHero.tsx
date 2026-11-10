@@ -45,7 +45,7 @@ export default function ContactPageHero() {
             SAFVRA
           </span>
           <span className="mt-1.5 text-[7.5px] sm:text-[8.5px] font-medium tracking-[0.22em] uppercase text-[#7A7A7A]">
-            INTERIOR STUDIO
+            CONCEPTS · INTERIOR FIT-OUT
           </span>
         </div>
 
@@ -81,21 +81,13 @@ export default function ContactPageHero() {
           {/* Bottom-Left Social Links (Aligned with Bottom of Right Photograph) */}
           <div
             style={{ transitionDelay: isVisible ? "340ms" : "0ms" }}
-            className={`pt-10 lg:pt-0 flex items-center gap-8 sm:gap-11 text-[13.5px] sm:text-[14.5px] font-medium tracking-[-0.015em] text-[#111111] transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
+            className={`pt-10 lg:pt-0 flex items-center gap-6 sm:gap-9 text-[13.5px] sm:text-[14.5px] font-medium tracking-[-0.015em] text-[#111111] transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
               ? "opacity-100 translate-y-0"
               : "opacity-0 translate-y-4"
               }`}
           >
             <a
-              href="https://behance.net"
-              target="_blank"
-              rel="noreferrer"
-              className="relative py-0.5 transition-colors duration-300 hover:text-[#FF5526] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#FF5526] after:transition-all after:duration-300 hover:after:w-full"
-            >
-              Behance
-            </a>
-            <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/safvra_concepts/"
               target="_blank"
               rel="noreferrer"
               className="relative py-0.5 transition-colors duration-300 hover:text-[#FF5526] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#FF5526] after:transition-all after:duration-300 hover:after:w-full"
@@ -103,12 +95,20 @@ export default function ContactPageHero() {
               Instagram
             </a>
             <a
-              href="https://telegram.org"
+              href="https://api.whatsapp.com/send?phone=971568025017"
               target="_blank"
               rel="noreferrer"
               className="relative py-0.5 transition-colors duration-300 hover:text-[#FF5526] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#FF5526] after:transition-all after:duration-300 hover:after:w-full"
             >
-              Telegram
+              WhatsApp
+            </a>
+            <a
+              href="https://www.facebook.com/safvraconcepts"
+              target="_blank"
+              rel="noreferrer"
+              className="relative py-0.5 transition-colors duration-300 hover:text-[#FF5526] after:absolute after:left-0 after:bottom-0 after:h-[1.5px] after:w-0 after:bg-[#FF5526] after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Facebook
             </a>
           </div>
         </div>
@@ -132,21 +132,21 @@ export default function ContactPageHero() {
               </p>
               <div className="flex flex-col gap-1 text-[14.5px] sm:text-[15.5px] font-medium tracking-[-0.015em] text-[#111111]">
                 <a
-                  href="mailto:work@safvrastudio.work"
+                  href="mailto:contact@safvraconcepts.com"
                   className="w-fit transition-colors duration-200 hover:text-[#FF5526]"
                 >
-                  work@safvrastudio.work
+                  contact@safvraconcepts.com
                 </a>
                 <a
-                  href="tel:+79112969217"
+                  href="tel:+971568025017"
                   className="w-fit transition-colors duration-200 hover:text-[#FF5526]"
                 >
-                  +7 911 296 92 17
+                  +971 56 802 5017
                 </a>
               </div>
             </div>
 
-            {/* 2. Careers */}
+            {/* 2. Direct WhatsApp & Inquiries */}
             <div
               style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}
               className={`transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
@@ -155,19 +155,27 @@ export default function ContactPageHero() {
                 }`}
             >
               <p className="text-[12.5px] sm:text-[13.5px] font-normal tracking-[-0.01em] text-[#9A9A9A] mb-3">
-                careers
+                direct consultation &amp; whatsapp
               </p>
               <div className="flex flex-col gap-1 text-[14.5px] sm:text-[15.5px] font-medium tracking-[-0.015em] text-[#111111]">
                 <a
-                  href="mailto:hr@safvrastudio.work"
+                  href="https://api.whatsapp.com/send?phone=971568025017"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="w-fit text-[#FF5526] transition-colors duration-200 hover:underline"
+                >
+                  WhatsApp: +971 56 802 5017
+                </a>
+                <a
+                  href="tel:+971501488983"
                   className="w-fit transition-colors duration-200 hover:text-[#FF5526]"
                 >
-                  hr@safvrastudio.work
+                  +971 50 148 8983
                 </a>
               </div>
             </div>
 
-            {/* 3. Collaborations */}
+            {/* 3. Collaborations & Projects */}
             <div
               style={{ transitionDelay: isVisible ? "260ms" : "0ms" }}
               className={`transition-all duration-800 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
@@ -176,21 +184,18 @@ export default function ContactPageHero() {
                 }`}
             >
               <p className="text-[12.5px] sm:text-[13.5px] font-normal tracking-[-0.01em] text-[#9A9A9A] mb-3">
-                collaborations
+                collaborations &amp; maintenance
               </p>
               <div className="flex flex-col gap-1 text-[14.5px] sm:text-[15.5px] font-medium tracking-[-0.015em] text-[#111111]">
                 <a
-                  href="mailto:n.karpova@safvrastudio.work"
+                  href="mailto:info@safvraconcepts.com"
                   className="w-fit transition-colors duration-200 hover:text-[#FF5526]"
                 >
-                  n.karpova@safvrastudio.work
+                  info@safvraconcepts.com
                 </a>
-                <a
-                  href="tel:+79312121607"
-                  className="w-fit transition-colors duration-200 hover:text-[#FF5526]"
-                >
-                  +7 931 212-16-07
-                </a>
+                <span className="text-[13px] font-normal text-[#7A7A7A]">
+                  Interior Fit-Out &amp; Turnkey Execution
+                </span>
               </div>
             </div>
 
@@ -206,9 +211,9 @@ export default function ContactPageHero() {
                 address
               </p>
               <address className="not-italic text-[14.5px] sm:text-[15.5px] font-medium tracking-[-0.015em] leading-[1.45] text-[#111111]">
-                191189, St. Petersburg,
+                Abu Dhabi,
                 <br />
-                Moika River Embankment 67-69
+                United Arab Emirates
               </address>
             </div>
           </div>

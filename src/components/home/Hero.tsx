@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 const HERO_DEMO_BG = "/landing/herobg.png";
 const BIO_AVATAR_SRC = "/landing/herobg.png";
@@ -71,15 +72,15 @@ export default function Hero() {
 
           {/* Dual Pill Button + Orange Circle Arrow Button */}
           <div className="animate-fade-up-delay-1 mt-7 sm:mt-8 inline-flex items-center gap-2.5 group">
-            <a
-              href="#consultation"
+            <Link
+              href="/contact"
               className="inline-flex h-12 sm:h-13.5 items-center justify-center rounded-full bg-white px-6 sm:px-7 text-[13.5px] sm:text-[14.5px] font-medium tracking-[-0.015em] text-[#121212] shadow-[0_6px_24px_rgba(0,0,0,0.12)] transition-all duration-300 ease-out group-hover:bg-[#121212] group-hover:text-white group-hover:shadow-[0_10px_30px_rgba(0,0,0,0.24)]"
             >
               Book a consultation
-            </a>
+            </Link>
 
-            <a
-              href="#consultation"
+            <Link
+              href="/contact"
               aria-label="Book a consultation"
               className="inline-flex h-12 w-12 sm:h-13.5 sm:w-13.5 items-center justify-center rounded-full bg-[#FF5526] text-white shadow-[0_6px_20px_rgba(255,85,38,0.38)] transition-all duration-300 ease-out group-hover:scale-105 group-hover:rotate-45 group-hover:bg-[#ff3d08]"
             >
@@ -98,7 +99,7 @@ export default function Hero() {
                   strokeLinejoin="round"
                 />
               </svg>
-            </a>
+            </Link>
           </div>
         </div>
 

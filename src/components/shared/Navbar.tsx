@@ -222,15 +222,7 @@ export default function Navbar() {
 
               <div className="flex flex-wrap items-center gap-x-5 gap-y-1.5 text-[12.5px] sm:text-[13.5px] font-medium text-[#444444]">
                 <a
-                  href="https://x.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="hover:text-[#FF5526] transition-colors flex items-center gap-1.5"
-                >
-                  <span className="font-bold">𝕏</span> <span>Twitter</span>
-                </a>
-                <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/safvra_concepts/"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[#FF5526] transition-colors flex items-center gap-1.5"
@@ -238,15 +230,23 @@ export default function Navbar() {
                   <span>@</span> <span>Instagram</span>
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://api.whatsapp.com/send?phone=971568025017"
                   target="_blank"
                   rel="noreferrer"
                   className="hover:text-[#FF5526] transition-colors flex items-center gap-1.5"
                 >
-                  <span className="font-bold text-[9px] border border-current px-0.5 rounded-[2px] leading-tight">
-                    in
+                  <span className="font-bold">💬</span> <span>WhatsApp</span>
+                </a>
+                <a
+                  href="https://www.facebook.com/safvraconcepts"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="hover:text-[#FF5526] transition-colors flex items-center gap-1.5"
+                >
+                  <span className="font-bold text-[10px] border border-current px-1 rounded-[2px] leading-tight">
+                    f
                   </span>
-                  <span>LinkedIn</span>
+                  <span>Facebook</span>
                 </a>
               </div>
             </div>
