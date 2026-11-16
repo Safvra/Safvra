@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import ContactPageHero from "@/components/ContactPageHero";
-import ContactFaqSection from "@/components/ContactFaqSection";
-import ContactFooterSection from "@/components/ContactFooterSection";
+import Navbar from "@/components/shared/Navbar";
+import ContactPageHero from "@/components/contact/ContactPageHero";
+import ContactFaqSection from "@/components/contact/ContactFaqSection";
+import ContactFooterSection from "@/components/shared/ContactFooterSection";
 
 export const metadata: Metadata = {
   title: "Contact Us — Safvra Concepts | Interior Fit-Out & General Maintenance",

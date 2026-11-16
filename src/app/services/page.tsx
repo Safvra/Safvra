@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import ServicesPageHero from "@/components/ServicesPageHero";
-import ServicesOverlaySection from "@/components/ServicesOverlaySection";
-import ContactFooterSection from "@/components/ContactFooterSection";
+import Navbar from "@/components/shared/Navbar";
+import ServicesPageHero from "@/components/services/ServicesPageHero";
+import ServicesOverlaySection from "@/components/services/ServicesOverlaySection";
+import ContactFooterSection from "@/components/shared/ContactFooterSection";
 
 export const metadata: Metadata = {
   title: "Services — Safvra Interior Architecture & Turnkey Fit-Out",

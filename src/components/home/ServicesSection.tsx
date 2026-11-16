@@ -1,218 +1,214 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 
-interface OverlayServiceItem {
-  id: number;
-  slug: string;
+interface ServiceColumn {
+  id: string;
   number: string;
-  title: string;
-  mainImage: string;
-  thumb1: string;
-  thumb2: string;
-  tools: [string, string, string];
+  topSubtitleLine1: string;
+  topSubtitleLine2: string;
+  bottomLabelLine1: string;
+  bottomLabelLine2: string;
+  image: string;
+  imageAlt: string;
+  defaultOpen?: boolean;
 }
 
-const OVERLAY_SERVICES: OverlayServiceItem[] = [
+const SERVICE_COLUMNS: ServiceColumn[] = [
   {
-    id: 1,
-    slug: "commercial-fit-out",
-    number: "/01",
-    title: "Commercial Fit-Out",
-    mainImage: "https://i.pinimg.com/736x/ed/c3/a4/edc3a421ee0aee9606ddb47e17157e37.jpg",
-    thumb1: "https://i.pinimg.com/736x/54/2a/cd/542acd14168f2fb2e705f1283b213e8c.jpg",
-    thumb2: "https://i.pinimg.com/736x/3b/f0/88/3bf088c2b314bbc40974f7b668944c2f.jpg",
-    tools: [
-      "Workspace Strategy & BIM",
-      "Acoustic Partition Systems",
-      "Turnkey MEP Execution",
-    ],
+    id: "commercial-fit-out",
+    number: "01",
+    topSubtitleLine1: "Explore our",
+    topSubtitleLine2: "workspace specialties",
+    bottomLabelLine1: "COMMERCIAL",
+    bottomLabelLine2: "FIT-OUT",
+    image:
+      "https://images.unsplash.com/photo-1497366216548-37526070297c?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Modern luxury commercial office fit-out",
+    defaultOpen: false,
   },
   {
-    id: 2,
-    slug: "residential-fit-out",
-    number: "/02",
-    title: "Residential Fit-Out",
-    mainImage: "https://i.pinimg.com/1200x/6e/e8/2f/6ee82f21f57822a05f34588b14124874.jpg",
-    thumb1: "https://i.pinimg.com/736x/e5/46/ae/e546ae52ca32371f05872c8984e27d07.jpg",
-    thumb2: "https://i.pinimg.com/1200x/96/52/bd/9652bde9138fd13fde487311cec5d204.jpg",
-    tools: [
-      "Bespoke Spatial Planning",
-      "Natural Stone & Millwork",
-      "Smart Lighting Integration",
-    ],
+    id: "residential-fit-out",
+    number: "02",
+    topSubtitleLine1: "Browse Our Bespoke",
+    topSubtitleLine2: "Home Solutions",
+    bottomLabelLine1: "RESIDENTIAL",
+    bottomLabelLine2: "FIT-OUT",
+    image:
+      "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Bespoke luxury residential living room interior",
+    defaultOpen: true,
   },
   {
-    id: 3,
-    slug: "retail-fit-out",
-    number: "/03",
-    title: "Retail Fit-Out",
-    mainImage: "https://i.pinimg.com/1200x/d7/9f/f4/d79ff4ec1b6d10e47e51a7515f24142f.jpg",
-    thumb1: "https://i.pinimg.com/1200x/62/f8/a8/62f8a825efd914a185e6ddd8eab5c86b.jpg",
-    thumb2: "https://i.pinimg.com/736x/cd/2e/df/cd2edf59f2a5bd20f809a89c04e99119.jpg",
-    tools: [
-      "Flagship Merchandising Flow",
-      "Custom Display Fabrication",
-      "Architectural Lighting",
-    ],
+    id: "retail-fit-out",
+    number: "03",
+    topSubtitleLine1: "Deep Dive into Our",
+    topSubtitleLine2: "Retail Capabilities",
+    bottomLabelLine1: "RETAIL",
+    bottomLabelLine2: "FIT-OUT",
+    image:
+      "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "High-end boutique retail store interior fit-out",
+    defaultOpen: false,
   },
   {
-    id: 4,
-    slug: "design-build-turnkey",
-    number: "/04",
-    title: "Design & Build (Turnkey)",
-    mainImage: "https://i.pinimg.com/736x/ec/48/11/ec4811e2552dd7f947b97f25232d5f8c.jpg",
-    thumb1: "https://i.pinimg.com/1200x/1c/72/04/1c720465d270dbcc3bf7b642133deaf4.jpg",
-    thumb2: "https://i.pinimg.com/736x/0a/b0/db/0ab0db8ca070db6a7bb4dea45ca816f4.jpg",
-    tools: [
-      "3D Architectural Visualization",
-      "Full Procurement & BOQ",
-      "End-to-End Site Supervision",
-    ],
+    id: "design-build-turnkey",
+    number: "04",
+    topSubtitleLine1: "Explore Our Comprehensive",
+    topSubtitleLine2: "Project Phases",
+    bottomLabelLine1: "DESIGN & BUILD",
+    bottomLabelLine2: "(TURNKEY)",
+    image:
+      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Turnkey architectural design and build interior",
+    defaultOpen: true,
   },
   {
-    id: 5,
-    slug: "kitchen-installation",
-    number: "/05",
-    title: "Kitchen Installation",
-    mainImage: "https://i.pinimg.com/736x/18/be/c8/18bec816181d8223e3a39af05c70506b.jpg",
-    thumb1: "https://i.pinimg.com/1200x/46/51/bf/4651bfb00fd36cc1a9b293b8035cafd7.jpg",
-    thumb2: "https://i.pinimg.com/1200x/94/44/6e/94446e6ff46b54290e509171ee33bcb8.jpg",
-    tools: [
-      "Precision German Hardware",
-      "Sintered Stone Countertops",
-      "Integrated Appliance Fit-Out",
-    ],
+    id: "kitchen-installation",
+    number: "05",
+    topSubtitleLine1: "Custom Culinary Spaces",
+    topSubtitleLine2: "& Precision Cabinetry",
+    bottomLabelLine1: "KITCHEN",
+    bottomLabelLine2: "INSTALLATION",
+    image:
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Contemporary bespoke kitchen island and cabinetry installation",
+    defaultOpen: false,
   },
   {
-    id: 6,
-    slug: "wood-flooring",
-    number: "/06",
-    title: "Wood Flooring",
-    mainImage: "https://i.pinimg.com/736x/7a/9c/dd/7a9cdd59272612c79ddacf49646bfbd5.jpg",
-    thumb1: "https://i.pinimg.com/736x/dd/3c/16/dd3c1623b6f73bc444da8de9753a88f7.jpg",
-    thumb2: "https://i.pinimg.com/1200x/bf/7a/df/bf7adf23fab103126099797e785de9a5.jpg",
-    tools: [
-      "Engineered European Oak",
-      "Herringbone & Chevron Lay",
-      "Acoustic Subfloor Leveling",
-    ],
+    id: "wood-flooring",
+    number: "06",
+    topSubtitleLine1: "Timeless Hardwood,",
+    topSubtitleLine2: "Parquet & Timber Finishes",
+    bottomLabelLine1: "WOOD",
+    bottomLabelLine2: "FLOORING",
+    image:
+      "https://images.unsplash.com/photo-1581858726788-75bc0f6a952d?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Warm natural oak wood flooring installation",
+    defaultOpen: true,
   },
   {
-    id: 7,
-    slug: "door-installation",
-    number: "/07",
-    title: "Door Installation",
-    mainImage: "https://i.pinimg.com/736x/73/67/e1/7367e18db37e6c4f81c3dd59d0354847.jpg",
-    thumb1: "https://i.pinimg.com/736x/ea/1f/42/ea1f4205451de3accf261f9c78233ebc.jpg",
-    thumb2: "https://i.pinimg.com/1200x/2c/e1/d5/2ce1d5ae210205cf8a419c290945f723.jpg",
-    tools: [
-      "Concealed Flush Frames",
-      "Solid Core Acoustic Timber",
-      "Architectural Pivot Hardware",
-    ],
+    id: "door-installation",
+    number: "07",
+    topSubtitleLine1: "Architectural Doors,",
+    topSubtitleLine2: "Frames & Hardware",
+    bottomLabelLine1: "DOOR",
+    bottomLabelLine2: "INSTALLATION",
+    image:
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Minimalist custom wooden interior door installation",
+    defaultOpen: false,
   },
   {
-    id: 8,
-    slug: "wardrobe-installation",
-    number: "/08",
-    title: "Wardrobe Installation",
-    mainImage: "https://i.pinimg.com/736x/ea/ca/83/eaca835c192eed33b1f42cd2085a7dd9.jpg",
-    thumb1: "https://i.pinimg.com/1200x/15/13/36/1513367c93c172ff66f01b3776981ba1.jpg",
-    thumb2: "https://i.pinimg.com/736x/e7/c5/2b/e7c52b27d53b18e10aaec4f8d2a563d7.jpg",
-    tools: [
-      "Custom Walk-In Systems",
-      "Fluted Glass & Bronze Profiles",
-      "Integrated LED Sensor Rails",
-    ],
+    id: "wardrobe-installation",
+    number: "08",
+    topSubtitleLine1: "Tailored Walk-In Closets",
+    topSubtitleLine2: "& Built-In Storage",
+    bottomLabelLine1: "WARDROBE",
+    bottomLabelLine2: "INSTALLATION",
+    image:
+      "https://images.unsplash.com/photo-1558997519-83ea9252edf8?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Luxury walk-in wardrobe and illuminated closet system",
+    defaultOpen: true,
   },
   {
-    id: 9,
-    slug: "vanity-installation",
-    number: "/09",
-    title: "Vanity Installation",
-    mainImage: "https://i.pinimg.com/1200x/d9/4d/85/d94d854ed31a1971a0b7dd9ebc12c14b.jpg",
-    thumb1: "https://i.pinimg.com/1200x/ae/cc/ca/aeccca49d1befe2edde692885279eb7a.jpg",
-    thumb2: "https://i.pinimg.com/736x/fe/b6/11/feb61114fc19f465cc6a627fcb3da5e6.jpg",
-    tools: [
-      "Monolithic Marble Basins",
-      "Moisture-Sealed Joinery",
-      "Backlit Mirror Architecture",
-    ],
+    id: "vanity-installation",
+    number: "09",
+    topSubtitleLine1: "Bespoke Bathroom",
+    topSubtitleLine2: "Counters & Millwork",
+    bottomLabelLine1: "VANITY",
+    bottomLabelLine2: "INSTALLATION",
+    image:
+      "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Modern marble and wood bathroom vanity installation",
+    defaultOpen: false,
   },
   {
-    id: 10,
-    slug: "gypsum-ceiling",
-    number: "/10",
-    title: "Gypsum Ceiling",
-    mainImage: "https://i.pinimg.com/1200x/4e/af/88/4eaf889c2a93e5a54c13ffc986652f83.jpg",
-    thumb1: "https://i.pinimg.com/736x/35/5d/97/355d97c49df8f652318b692a2eb96861.jpg",
-    thumb2: "https://i.pinimg.com/1200x/d1/a8/7b/d1a87b9f7208a4d58fe497c259aab3a0.jpg",
-    tools: [
-      "Shadow-Gap Cove Detailing",
-      "Linear Slot Diffuser Integration",
-      "Multi-Level Acoustic Coffers",
-    ],
+    id: "gypsum-ceiling",
+    number: "10",
+    topSubtitleLine1: "Sculpted False Ceilings",
+    topSubtitleLine2: "& Cove Lighting Integration",
+    bottomLabelLine1: "GYPSUM",
+    bottomLabelLine2: "CEILING",
+    image:
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Architectural gypsum ceiling with recessed linear lighting",
+    defaultOpen: true,
   },
   {
-    id: 11,
-    slug: "general-maintenance",
-    number: "/11",
-    title: "General Maintenance",
-    mainImage: "https://i.pinimg.com/1200x/24/2a/07/242a07997c549722d31783d6217e02bc.jpg",
-    thumb1: "https://i.pinimg.com/1200x/05/69/98/056998717e053c05456dc34e46b91d06.jpg",
-    thumb2: "https://i.pinimg.com/736x/a8/dc/00/a8dc0034589118f00ce94a3b272b4f34.jpg",
-    tools: [
-      "Preventive MEP Servicing",
-      "Timber & Stone Refinishing",
-      "Rapid On-Call Facility Care",
-    ],
+    id: "general-maintenance",
+    number: "11",
+    topSubtitleLine1: "Complete Facility Care",
+    topSubtitleLine2: "& Property Upkeep",
+    bottomLabelLine1: "GENERAL",
+    bottomLabelLine2: "MAINTENANCE",
+    image:
+      "https://images.unsplash.com/photo-1581578731548-c64695cc6952?q=85&w=1000&auto=format&fit=crop",
+    imageAlt: "Professional interior property maintenance and care",
+    defaultOpen: false,
   },
 ];
 
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
-  const cardRefs = useRef<(HTMLElement | null)[]>([]);
-  const [activeIdx, setActiveIdx] = useState(0);
-  const [scrollRatio, setScrollRatio] = useState(0);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [sectionVisible, setSectionVisible] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [maxTranslateX, setMaxTranslateX] = useState(0);
 
+  const outerRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  // Measure horizontal track overflow so we know exact pixel distance to translate on X-axis
+  useEffect(() => {
+    const updateMeasurements = () => {
+      if (!trackRef.current) return;
+      const totalWidth = trackRef.current.scrollWidth;
+      const viewportWidth = window.innerWidth;
+      setMaxTranslateX(Math.max(0, totalWidth - viewportWidth));
+    };
+
+    updateMeasurements();
+    window.addEventListener("resize", updateMeasurements, { passive: true });
+    return () => window.removeEventListener("resize", updateMeasurements);
+  }, []);
+
+  // Map vertical scroll progress inside the tall outer wrapper to 0..1 horizontal X progress
   useEffect(() => {
     let rafId = 0;
 
-    const updateOnScroll = () => {
-      if (!sectionRef.current) return;
-      const vh = window.innerHeight || 1;
-      const sectionRect = sectionRef.current.getBoundingClientRect();
-      const totalScrollable = Math.max(1, sectionRect.height - vh);
-      const rawRatio = Math.max(
-        0,
-        Math.min(1, -sectionRect.top / totalScrollable)
-      );
-      setScrollRatio(rawRatio);
+    const handleScroll = () => {
+      const outer = outerRef.current;
+      if (!outer) return;
 
-      // Determine which sticky card is currently at the top active threshold
-      let currentActive = 0;
-      const stickyThreshold = vh * 0.34;
-      for (let i = 0; i < cardRefs.current.length; i++) {
-        const el = cardRefs.current[i];
-        if (!el) continue;
-        const rect = el.getBoundingClientRect();
-        if (rect.top <= stickyThreshold) {
-          currentActive = i;
-        }
+      const rect = outer.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      if (rect.top < vh * 0.85) {
+        setSectionVisible(true);
       }
-      setActiveIdx(currentActive);
+
+      // Total vertical distance while sticky viewport is pinned at top:0
+      const scrollableDistance = rect.height - vh;
+      if (scrollableDistance <= 0) {
+        setScrollProgress(0);
+        return;
+      }
+
+      const scrolled = -rect.top;
+      const clamped = Math.max(0, Math.min(1, scrolled / scrollableDistance));
+      setScrollProgress(clamped);
     };
 
     const onScroll = () => {
       cancelAnimationFrame(rafId);
-      rafId = requestAnimationFrame(updateOnScroll);
+      rafId = requestAnimationFrame(handleScroll);
     };
 
-    updateOnScroll();
+    handleScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });
+
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("scroll", onScroll);
@@ -220,152 +216,203 @@ export default function ServicesSection() {
     };
   }, []);
 
-  const totalCount = OVERLAY_SERVICES.length;
-  const formattedActive = String(activeIdx + 1).padStart(2, "0");
-  const formattedTotal = String(totalCount).padStart(2, "0");
-  const indicatorLeftPercent = 12 + scrollRatio * 76;
+  const currentTranslateX = scrollProgress * maxTranslateX;
 
   return (
     <section
       id="services"
-      ref={sectionRef}
-      aria-label="Services Overlaying Stack"
-      className="relative w-full bg-white text-[#111111] pt-16 sm:pt-24 pb-24 sm:pb-36 px-5 sm:px-9 md:px-14 select-none"
+      ref={outerRef}
+      /* 340dvh vertical scroll runway:
+         1. User scrolls down into Services until it fills 100dvh (sticky locks at top-0)
+         2. Continuing to scroll translates the 11 service columns horizontally along X-axis
+         3. Once X reaches the 11th card (100%), normal Y-axis scrolling resumes into StatsSection */
+      className="relative w-full h-[340dvh] bg-white text-[#1A1A1A] border-t border-b border-[#E5E4E1] select-none"
     >
-      <div className="w-full">
-        {/* ================================================================ */}
-        {/* STICKY SECTION HEADER: "(What I Do)" + "Services" + Progress Bar */}
-        {/* ================================================================ */}
-        <div className="sticky top-0 z-30 bg-white pt-6 sm:pt-8 pb-6 sm:pb-8 border-b border-black/[0.06]">
-          <p className="text-[12.5px] sm:text-[14px] font-normal tracking-[-0.015em] text-[#555555] mb-1 sm:mb-2">
-            (What I Do)
-          </p>
+      {/* Sticky 100dvh Viewport Container */}
+      <div className="sticky top-0 left-0 h-dvh w-full overflow-hidden bg-white">
+        {/* Top-Left Brand Mark ("Services") */}
+        <div
+          className={`pointer-events-none absolute top-7 left-6 sm:top-10 sm:left-10 z-30 flex items-center gap-2.5 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            sectionVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-4"
+          }`}
+        >
+          <svg
+            width="22"
+            height="18"
+            viewBox="0 0 24 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="text-[#1A1A1A]"
+          >
+            <circle cx="6.5" cy="9.5" r="4.5" fill="currentColor" />
+            <circle cx="14.5" cy="6.5" r="4" fill="currentColor" />
+            <circle cx="14.5" cy="13.5" r="4" fill="currentColor" />
+            <circle cx="11.5" cy="8.5" r="1.5" fill="white" />
+          </svg>
+          <span className="text-[14px] sm:text-[15.5px] font-medium tracking-[-0.02em] text-[#2A2A2A]">
+            Services
+          </span>
+        </div>
 
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <h2 className="text-[54px] sm:text-[82px] lg:text-[102px] font-medium tracking-[-0.044em] leading-[0.92] text-[#0D0D0D]">
-              Services
-            </h2>
+        {/* Spanning Editorial Headline ("OUR SERVICES") & Progress Indicator */}
+        <div
+          className={`pointer-events-none absolute top-7 right-6 sm:top-10 lg:left-[50%] lg:right-10 z-30 transition-all duration-900 delay-150 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            sectionVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-6"
+          }`}
+        >
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 lg:pl-8 xl:pl-12">
+            <div>
+              <h2 className="text-[26px] sm:text-[42px] xl:text-[52px] font-normal uppercase tracking-[0.02em] leading-[1.12] text-[#222222]">
+                OUR SERVICES
+              </h2>
 
-            {/* Right Progress Track with "+" Node & Live Counter (01/11) */}
-            <div className="flex-1 flex items-center gap-6 md:pb-3 md:pl-10 lg:pl-16">
-              <div className="relative h-[1px] flex-1 bg-black/[0.08]">
-                <span
-                  style={{ left: `${indicatorLeftPercent}%` }}
-                  className="absolute top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-4 w-4 items-center justify-center rounded-full bg-[#111111] text-[10px] font-bold leading-none text-white transition-[left] duration-150 ease-out"
+              <div className="mt-4 sm:mt-6 pointer-events-auto inline-flex items-center gap-4">
+                <a
+                  href="#contact"
+                  className="group inline-flex h-10 sm:h-11 items-center justify-center rounded-full border border-[#222222]/75 bg-white/85 backdrop-blur-sm px-6 sm:px-7 text-[10.5px] sm:text-[11.5px] font-medium uppercase tracking-[0.12em] text-[#1A1A1A] transition-all duration-300 ease-out hover:bg-[#1A1A1A] hover:text-white hover:border-[#1A1A1A]"
                 >
-                  +
-                </span>
-              </div>
+                  <span>EXPLORE SERVICES</span>
+                </a>
 
-              <span className="text-[12.5px] sm:text-[13.5px] font-medium tracking-[-0.01em] text-[#222222] tabular-nums shrink-0">
-                {formattedActive}/{formattedTotal}
-              </span>
+                {/* Subtle Horizontal Scroll Progress Bar */}
+                <div className="hidden sm:flex items-center gap-2.5">
+                  <div className="h-[2px] w-24 bg-black/10 overflow-hidden rounded-full">
+                    <div
+                      style={{
+                        transform: `scaleX(${Math.max(0.08, scrollProgress)})`,
+                      }}
+                      className="h-full w-full origin-left bg-[#FF5526] transition-transform duration-150 ease-out"
+                    />
+                  </div>
+                  <span className="font-mono text-[11px] text-[#666666] tabular-nums">
+                    {String(
+                      Math.min(
+                        11,
+                        Math.max(1, Math.round(1 + scrollProgress * 10))
+                      )
+                    ).padStart(2, "0")}{" "}
+                    / 11
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* ================================================================ */}
-        {/* OVERLAYING STICKY SERVICE CARDS STACK                            */}
-        {/* Each card pins beneath the sticky header while the next card     */}
-        {/* smoothly scrolls up from below and overlays it                   */}
-        {/* ================================================================ */}
-        <div className="relative mt-6 sm:mt-10 w-full">
-          {OVERLAY_SERVICES.map((service, idx) => {
+        {/* Horizontal X-Axis Track Driven by Vertical Scroll */}
+        <div
+          ref={trackRef}
+          onMouseLeave={() => setHoveredIndex(null)}
+          style={{
+            transform: `translate3d(${-currentTranslateX.toFixed(1)}px, 0, 0)`,
+          }}
+          className="flex h-full w-max divide-x divide-[#E5E4E1] will-change-transform transition-transform duration-75 ease-out"
+        >
+          {SERVICE_COLUMNS.map((col, idx) => {
+            // Multiple services open by default (02, 04, 06, 08, 10) when not hovering;
+            // when hovering a specific card, that card opens and others close
+            const isRevealed =
+              hoveredIndex !== null ? hoveredIndex === idx : Boolean(col.defaultOpen);
+
             return (
-              <article
-                key={service.id}
-                ref={(el) => {
-                  cardRefs.current[idx] = el;
-                }}
+              <Link
+                key={col.id}
+                href={`/services/${col.id}`}
+                tabIndex={0}
+                onMouseEnter={() => setHoveredIndex(idx)}
+                onFocus={() => setHoveredIndex(idx)}
+                onBlur={() => setHoveredIndex(null)}
                 style={{
-                  zIndex: 10 + idx,
+                  transitionDelay:
+                    sectionVisible && idx < 5 ? `${idx * 90}ms` : "0ms",
                 }}
-                className="group/card relative sticky top-[148px] sm:top-[185px] lg:top-[205px] w-full bg-white pt-6 sm:pt-8 pb-10 sm:pb-14 border-t border-black/[0.08] cursor-pointer"
+                className={`group relative shrink-0 w-[85vw] sm:w-[50vw] lg:w-[25vw] h-dvh flex flex-col justify-between p-6 sm:p-8 xl:p-10 overflow-hidden cursor-pointer outline-none transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  sectionVisible ? "opacity-100" : "opacity-0"
+                }`}
               >
-                {/* Full-Card Clickable Link Overlay */}
-                <Link
-                  href={`/services/${service.slug}`}
-                  className="absolute inset-0 z-20"
-                  aria-label={`View detailed specifications for ${service.title}`}
-                />
-
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch w-full">
-                  {/* Left Column (4 Cols): Primary Square/Portrait Service Image */}
-                  <div className="lg:col-span-4">
-                    <div className="group relative block aspect-[1/1.02] w-full max-w-[440px] overflow-hidden rounded-[6px] bg-[#141414]">
-                      <img
-                        src={service.mainImage}
-                        alt={service.title}
-                        loading={idx < 2 ? "eager" : "lazy"}
-                        className="h-full w-full object-cover object-center transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/card:scale-105"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Middle Column (5 Cols): Slash Index + Title + "• Tools Used" Table */}
-                  <div className="lg:col-span-5 flex flex-col justify-between py-1">
-                    {/* Top: /01 + Service Title */}
-                    <div>
-                      <span className="block text-[13px] sm:text-[14px] font-normal tracking-[-0.01em] text-[#7A7A7A] mb-3 sm:mb-4">
-                        {service.number}
-                      </span>
-                      <h3 className="text-[30px] sm:text-[38px] lg:text-[44px] font-normal tracking-[-0.032em] leading-[1.08] text-[#111111] transition-colors duration-300 group-hover/card:text-[#FF5526]">
-                        {service.title}
-                      </h3>
-                    </div>
-
-                    {/* Bottom: "• Tools Used" + 3 Horizontal Divider Rows */}
-                    <div className="mt-8 lg:mt-12 max-w-[380px]">
-                      <p className="flex items-center gap-2 text-[12.5px] sm:text-[13.5px] font-semibold tracking-[-0.01em] text-[#222222] pb-2.5">
-                        <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#111111]" />
-                        <span>Tools Used</span>
-                      </p>
-
-                      <ul className="divide-y divide-black/[0.07] border-t border-b border-black/[0.07]">
-                        {service.tools.map((tool) => (
-                          <li
-                            key={tool}
-                            className="py-2.5 text-[12px] sm:text-[13px] font-normal tracking-[-0.01em] text-[#707070]"
-                          >
-                            {tool}
-                          </li>
-                        ))}
-                      </ul>
-
-                      <div className="mt-5">
-                        <div className="inline-flex items-center gap-2 text-[12px] sm:text-[13px] font-medium tracking-[-0.01em] text-[#111111] transition-colors duration-300 group-hover/card:text-[#FF5526]">
-                          <span>Explore Specifications</span>
-                          <span className="transition-transform duration-300 group-hover/card:translate-x-1">
-                            →
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Right Column (3 Cols): Bottom-Aligned Pair of Square Monochrome Thumbnails */}
-                  <div className="lg:col-span-3 flex items-end justify-start lg:justify-end">
-                    <div className="grid grid-cols-2 gap-3 w-[190px] sm:w-[225px]">
-                      <div className="group relative aspect-square overflow-hidden rounded-[4px] bg-[#E5E5E2]">
-                        <img
-                          src={service.thumb1}
-                          alt={`${service.title} detail 1`}
-                          loading="lazy"
-                          className="h-full w-full object-cover object-center grayscale contrast-125 transition-all duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105"
-                        />
-                      </div>
-                      <div className="group relative aspect-square overflow-hidden rounded-[4px] bg-[#E5E5E2]">
-                        <img
-                          src={service.thumb2}
-                          alt={`${service.title} detail 2`}
-                          loading="lazy"
-                          className="h-full w-full object-cover object-center grayscale contrast-125 transition-all duration-500 group-hover/card:grayscale-0 group-hover/card:scale-105"
-                        />
-                      </div>
-                    </div>
-                  </div>
+                {/* Full-Height Image Curtain Sliding Up from the Bottom */}
+                <div
+                  aria-hidden="true"
+                  className={`pointer-events-none absolute inset-0 z-10 overflow-hidden transition-transform duration-[850ms] ease-[cubic-bezier(0.19,1,0.22,1)] ${
+                    isRevealed ? "translate-y-0" : "translate-y-full"
+                  }`}
+                >
+                  <img
+                    src={col.image}
+                    alt={col.imageAlt}
+                    loading="lazy"
+                    width={700}
+                    height={1100}
+                    className={`h-full w-full object-cover object-center transition-transform duration-[1200ms] ease-[cubic-bezier(0.19,1,0.22,1)] ${
+                      isRevealed ? "scale-100" : "scale-115"
+                    }`}
+                  />
+                  {/* Soft Warm Top & Bottom Readability Wash */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-[#ECEAE4]/75 via-transparent to-[#D5CFBE]/75" />
                 </div>
-              </article>
+
+                {/* Top Subtitle inside Column — Reveals when active */}
+                <div
+                  className={`relative z-20 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    idx === 0 ? "pt-14 lg:pt-16" : "pt-14 lg:pt-2"
+                  } ${
+                    isRevealed
+                      ? "opacity-100 translate-y-0 delay-100"
+                      : "opacity-0 translate-y-4 pointer-events-none"
+                  }`}
+                >
+                  <p className="text-[14px] sm:text-[15.5px] font-normal leading-[1.38] tracking-[-0.01em] text-[#222222]">
+                    {col.topSubtitleLine1}
+                    <br />
+                    {col.topSubtitleLine2}
+                  </p>
+                </div>
+
+                {/* Middle Decorative Bold Asterisk `*` — Animates in & spins when active */}
+                <div
+                  aria-hidden="true"
+                  className={`relative z-20 my-auto pl-1 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    isRevealed
+                      ? "opacity-100 translate-y-6 rotate-90 scale-100 delay-150"
+                      : "opacity-0 translate-y-14 rotate-0 scale-75"
+                  }`}
+                >
+                  <svg
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="text-[#121212]"
+                  >
+                    <path
+                      d="M16 3V29M4.74 9.5L27.26 22.5M27.26 9.5L4.74 22.5"
+                      stroke="currentColor"
+                      strokeWidth="4.2"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </div>
+
+                {/* Bottom Index Number (01–11) + 2-Line Service Title */}
+                <div className="relative z-20 mt-auto pt-8">
+                  <span className="block font-mono text-[12px] sm:text-[13px] font-medium tracking-[0.06em] text-[#FF5526] mb-2">
+                    {col.number}
+                  </span>
+                  <h3
+                    className={`text-[22px] sm:text-[26px] xl:text-[31px] font-normal uppercase tracking-[0.02em] leading-[1.18] text-[#1E1E1E] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      isRevealed ? "-translate-y-1.5" : "translate-y-0"
+                    }`}
+                  >
+                    <span className="block">{col.bottomLabelLine1}</span>
+                    <span className="block">{col.bottomLabelLine2}</span>
+                  </h3>
+                </div>
+              </Link>
             );
           })}
         </div>

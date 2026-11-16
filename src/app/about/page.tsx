@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import AboutHeroSection from "@/components/AboutHeroSection";
-import FoundersSection from "@/components/FoundersSection";
-import AboutStorySection from "@/components/AboutStorySection";
-import StatsSection from "@/components/StatsSection";
-import WhyWorkWithUsSection from "@/components/WhyWorkWithUsSection";
-import ContactFooterSection from "@/components/ContactFooterSection";
+import Navbar from "@/components/shared/Navbar";
+import AboutHeroSection from "@/components/about/AboutHeroSection";
+import FoundersSection from "@/components/about/FoundersSection";
+import AboutStorySection from "@/components/about/AboutStorySection";
+import StatsSection from "@/components/home/StatsSection";
+import WhyWorkWithUsSection from "@/components/about/WhyWorkWithUsSection";
+import ContactFooterSection from "@/components/shared/ContactFooterSection";
 
 export const metadata: Metadata = {
   title: "The Studio — Safvara Interior Architecture & Fit-Out",

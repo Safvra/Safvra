@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import Navbar from "@/components/Navbar";
-import ContactFooterSection from "@/components/ContactFooterSection";
-import ServiceDetailView from "@/components/ServiceDetailView";
+import Navbar from "@/components/shared/Navbar";
+import ContactFooterSection from "@/components/shared/ContactFooterSection";
+import ServiceDetailView from "@/components/services/ServiceDetailView";
 import { SERVICES_DATA, getServiceBySlug } from "@/data/servicesData";
 
 interface ServicePageProps {

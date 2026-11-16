@@ -2,10 +2,10 @@
 
 import { useMemo, useState } from "react";
 import { PROJECTS_DATA, Project } from "@/data/projectsData";
-import ProjectsHeroSection from "@/components/ProjectsHeroSection";
-import ProjectsGallerySection from "@/components/ProjectsGallerySection";
-import ProjectsProcessStrip from "@/components/ProjectsProcessStrip";
-import ProjectsCaseStudyModal from "@/components/ProjectsCaseStudyModal";
+import ProjectsHeroSection from "@/components/projects/ProjectsHeroSection";
+import ProjectsGallerySection from "@/components/projects/ProjectsGallerySection";
+import ProjectsProcessStrip from "@/components/projects/ProjectsProcessStrip";
+import ProjectsCaseStudyModal from "@/components/projects/ProjectsCaseStudyModal";
 
 export default function ProjectsPageClient() {
   const [activeCategory, setActiveCategory] = useState<string>("All");

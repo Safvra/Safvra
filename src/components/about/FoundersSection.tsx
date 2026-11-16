@@ -15,26 +15,26 @@ const FOUNDERS: Founder[] = [
     id: 1,
     name: "JOHN MOSSIER",
     role: "Co-Founder & Principal Architect",
-    image: "/avathars/image-1.png",
+    image: "/landing/founders/founder-1.jpg",
   },
   {
     id: 2,
     name: "STACY FREED",
     role: "Co-Founder & Creative Director",
-    image: "/avathars/image-2.png",
+    image: "/landing/founders/founder-2.jpg",
   },
   {
     id: 3,
     name: "MATT LONGST",
     role: "Managing Partner & Head of Fit-Out",
-    image: "/avathars/image-1.png",
+    image: "/landing/founders/founder-1.jpg",
     flipHorizontal: true,
   },
   {
     id: 4,
     name: "ELENA VANCE",
     role: "Partner & Interior Architecture Lead",
-    image: "/avathars/image-2.png",
+    image: "/landing/founders/founder-2.jpg",
     flipHorizontal: true,
   },
 ];
@@ -116,10 +116,11 @@ export default function FoundersSection() {
       <div className="mx-auto max-w-[1680px] px-6 sm:px-10 md:px-14">
         {/* Eyebrow "+ OUR TEAM" */}
         <div
-          className={`flex items-center gap-2.5 text-[11px] sm:text-[12px] font-mono uppercase tracking-[0.14em] text-[#3A3A3A] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
-            ? "opacity-100 translate-y-0 blur-none"
-            : "opacity-0 translate-y-4 blur-[4px]"
-            }`}
+          className={`flex items-center gap-2.5 text-[11px] sm:text-[12px] font-mono uppercase tracking-[0.14em] text-[#3A3A3A] transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+            isVisible
+              ? "opacity-100 translate-y-0 blur-none"
+              : "opacity-0 translate-y-4 blur-[4px]"
+          }`}
         >
           <span className="text-[14px] font-normal leading-none text-[#121212]">
             +
@@ -131,10 +132,11 @@ export default function FoundersSection() {
         <div className="mt-4 sm:mt-5 flex items-end justify-between gap-6">
           <h2
             style={{ transitionDelay: isVisible ? "100ms" : "0ms" }}
-            className={`text-[36px] sm:text-[50px] md:text-[58px] lg:text-[64px] font-normal tracking-[-0.036em] leading-[1.04] text-[#111111] transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
-              ? "opacity-100 translate-y-0 blur-none"
-              : "opacity-0 translate-y-8 blur-[6px]"
-              }`}
+            className={`text-[36px] sm:text-[50px] md:text-[58px] lg:text-[64px] font-normal tracking-[-0.036em] leading-[1.04] text-[#111111] transition-all duration-900 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isVisible
+                ? "opacity-100 translate-y-0 blur-none"
+                : "opacity-0 translate-y-8 blur-[6px]"
+            }`}
           >
             Board of Directors
           </h2>
@@ -142,10 +144,11 @@ export default function FoundersSection() {
           {/* Right Square Prev / Next Controls matching the reference */}
           <div
             style={{ transitionDelay: isVisible ? "200ms" : "0ms" }}
-            className={`flex items-center gap-2 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-4"
-              }`}
+            className={`flex items-center gap-2 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
+            }`}
           >
             <button
               type="button"
@@ -215,10 +218,11 @@ export default function FoundersSection() {
                 style={{
                   transitionDelay: isVisible ? `${staggerMs}ms` : "0ms",
                 }}
-                className={`group relative w-[84vw] sm:w-[46vw] lg:w-[43vw] shrink-0 flex flex-col justify-between transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${isVisible
-                  ? "opacity-100 translate-y-0 blur-none"
-                  : "opacity-0 translate-y-14 blur-[8px]"
-                  }`}
+                className={`group relative w-[84vw] sm:w-[46vw] lg:w-[43vw] shrink-0 flex flex-col justify-between transition-all duration-1000 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                  isVisible
+                    ? "opacity-100 translate-y-0 blur-none"
+                    : "opacity-0 translate-y-14 blur-[8px]"
+                }`}
               >
                 {/* Top Name Header with Left Architectural Bracket Divider */}
                 <div className="relative flex items-center pl-4 sm:pl-5 py-1.5">
@@ -250,8 +254,9 @@ export default function FoundersSection() {
                       src={founder.image}
                       alt={`${founder.name} — ${founder.role}`}
                       loading="lazy"
-                      className={`h-full w-full object-contain object-bottom mix-blend-multiply contrast-[1.03] brightness-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] ${founder.flipHorizontal ? "-scale-x-100 group-hover:scale-x-[-1.035] group-hover:scale-y-[1.035]" : ""
-                        }`}
+                      className={`h-full w-full object-contain object-bottom mix-blend-multiply contrast-[1.03] brightness-[1.02] transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.035] ${
+                        founder.flipHorizontal ? "-scale-x-100 group-hover:scale-x-[-1.035] group-hover:scale-y-[1.035]" : ""
+                      }`}
                     />
                   </div>
                 </div>

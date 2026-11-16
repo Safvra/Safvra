@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Navbar from "@/components/Navbar";
-import ProjectsPageClient from "@/components/ProjectsPageClient";
-import ContactFooterSection from "@/components/ContactFooterSection";
+import Navbar from "@/components/shared/Navbar";
+import ProjectsPageClient from "@/components/projects/ProjectsPageClient";
+import ContactFooterSection from "@/components/shared/ContactFooterSection";
 
 export const metadata: Metadata = {
   title: "Projects & Selected Works — Safvara Interior Architecture & Fit-Out",
