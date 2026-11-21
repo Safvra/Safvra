@@ -1,0 +1,34 @@
+# robots.txt: replace example.com and review every rule.
+# robots.txt controls crawling, not indexing. Use noindex (and allow crawling) to keep pages out of results.
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /account/
+Disallow: /search
+Disallow: /*?sort=
+Disallow: /*?filter=
+Disallow: /*?utm_
+
+# --- AI search and user-initiated fetchers: allowed so the site can be cited ---
+User-agent: OAI-SearchBot
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: ChatGPT-User
+User-agent: Claude-User
+User-agent: Perplexity-User
+Allow: /
+
+# --- AI training crawlers: BUSINESS DECISION ---
+# TODO(seo): confirm with the business. Default below is allow. To opt out, change to "Disallow: /".
+# Blocking these does not affect Google Search ranking. Verify current agent names in each vendor's docs.
+User-agent: GPTBot
+User-agent: ClaudeBot
+User-agent: Google-Extended
+User-agent: CCBot
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml
