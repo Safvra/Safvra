@@ -42,7 +42,7 @@ export const siteConfig = {
     secondaryPhone: '+971-50-148-8983',
     priceRange: '$$$',
     address: {
-      streetAddress: 'Abu Dhabi Business Hub', // TODO(seo): provide exact street/building address if applicable
+      streetAddress: 'Abu Dhabi', // Official registered location: Abu Dhabi, United Arab Emirates
       addressLocality: 'Abu Dhabi',
       addressRegion: 'Abu Dhabi',
       postalCode: '00000', // UAE standard postal placeholder

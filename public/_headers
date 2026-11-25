@@ -1,0 +1,29 @@
+# Cloudflare Security & Caching Headers
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: SAMEORIGIN
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+# Immutable caching for static Next.js build assets
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache landing media assets for 30 days
+/landing/*
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# HTML revalidation
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Crawl & metadata files
+/sitemap.xml
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/robots.txt
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+/llms.txt
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600

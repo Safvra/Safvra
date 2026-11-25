@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { siteConfig } from "@/seo.config";
 
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   const isProduction = siteConfig.isProduction;
 
